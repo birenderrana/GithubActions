@@ -4,7 +4,7 @@ name: Portfolio
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:     #It means we have to manually enable the workflow
 
 permissions:
   pages: write
