@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: checkput code
         uses: actions/checkout@v4
+        with:
+          path: main
 
       - name: Say Hello to users
         run: echo "Hello users"
@@ -28,10 +30,6 @@ jobs:
       
       - name: Print current date
         run: date
-
-      - name: List files in the repository
-        run: |
-            ls -R ${{ github.workspace }}
 
       - name: Runner's opearting system
         run: cat /etc/os-release
