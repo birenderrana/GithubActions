@@ -6,11 +6,7 @@ name: Hello
 #Trigger that will run the workflow
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '*.html'
-
+  workflow_dispatch:
 
 #What the workflow will do
 jobs:
@@ -18,14 +14,25 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
+      - name: checkput code
+        uses: actions/checkout@v4
+
       - name: Say Hello to users
         run: echo "Hello users"
 
       - name: Say Hellow to logged in users
         run: echo "Hello current user $USER"
+      
+      - name: Print current date
+        run: date
 
-  details:
-    runs-on: ubunut-latest
-    steps:
-      - name: Docker and python version details
-        run: docker --version && python --version
+      - name: List files in the repository
+        run: |
+            ls -R ${{ github.workspace }}
+
+      - name: Runner's opearting system
+        run: cat /etc/os-release
+
+      - name: Print branch name
+        run: |
+          echo "Current branch: ${GITHUB_REF##*/}"
